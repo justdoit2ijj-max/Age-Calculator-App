@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins-ExtraBoldItalic.ttf") format("truetype");
+    font-weight: 800;
+    font-style: italic;
+}
+
+@theme {
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+:root {
+    --purple: hsl(259, 100%, 65%);
+    --red: hsl(0, 100%, 67%);
+    --white: hsl(0, 100%, 100%);
+    --grey-100: hsl(0, 0%, 94%);
+    --grey-200: hsl(0, 0%, 86%);
+    --grey-500: hsl(0, 1%, 44%);
+    --black: hsl(0, 0%, 0%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: var(--grey-100);
+    color: var(--black);
+    font-family: "Poppins", sans-serif;
+}
+
+.calculator {
+    width: min(100%, 840px);
+    min-height: 650px;
+    padding: 56px;
+    background: var(--white);
+    border-radius: 24px 24px 200px 24px;
+}
+
+.date-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 160px);
+    gap: 32px;
+}
+
+.field {
+    min-width: 0;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--grey-500);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.field input {
+    width: 100%;
+    height: 72px;
+    padding: 12px 24px;
+    border: 1px solid var(--grey-200);
+    border-radius: 8px;
+    color: var(--black);
+    font: 700 32px/1 "Poppins", sans-serif;
+    caret-color: var(--purple);
+}
+
+.field input::placeholder {
+    color: var(--grey-500);
+    opacity: 1;
+}
+
+.field input:focus {
+    border-color: var(--purple);
+    outline: none;
+}
+
+.error-message {
+    display: block;
+    min-height: 20px;
+    margin-top: 8px;
+    color: var(--red);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.submit-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 18px 0 28px;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: var(--grey-200);
+}
+
+#submit {
+    flex: 0 0 auto;
+    width: 96px;
+    height: 96px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--purple);
+    cursor: pointer;
+    transition: background-color 160ms ease;
+}
+
+#submit:hover,
+#submit:focus-visible {
+    background: var(--black);
+}
+
+#submit:focus-visible {
+    outline: 3px solid var(--purple);
+    outline-offset: 4px;
+}
+
+#submit img {
+    width: 46px;
+    height: 44px;
+}
+
+.results {
+    font-style: italic;
+    font-weight: 800;
+    line-height: 1.08;
+}
+
+.results p {
+    margin: 0;
+    font-size: clamp(4.5rem, 7.2vw, 6.5rem);
+    letter-spacing: 0;
+}
+
+.results span {
+    color: var(--purple);
+}
+
+@media (max-width: 720px) {
+    body {
+        align-items: start;
+        padding: 88px 16px 48px;
+    }
+
+    .calculator {
+        min-height: 486px;
+        padding: 48px 24px;
+        border-radius: 24px 24px 96px 24px;
+    }
+
+    .date-fields {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .field label {
+        font-size: 12px;
+        letter-spacing: 3px;
+    }
+
+    .field input {
+        height: 54px;
+        padding: 10px 14px;
+        font-size: 20px;
+    }
+
+    .error-message {
+        min-height: 34px;
+        font-size: 10px;
+    }
+
+    .submit-row {
+        justify-content: center;
+        margin: 22px 0 30px;
+    }
+
+    #submit {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+    }
+
+    #submit img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .results p {
+        font-size: clamp(3.1rem, 15vw, 4rem);
+        line-height: 1.12;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        padding-inline: 10px;
+    }
+
+    .calculator {
+        padding-inline: 18px;
+    }
+
+    .date-fields {
+        gap: 10px;
+    }
+
+    .field input {
+        padding-inline: 10px;
+        font-size: 18px;
+    }
+
+    .field label {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+}
